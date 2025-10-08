@@ -14,7 +14,7 @@ COPY . .
 # Inject environment variables (optional — better to use .env or docker run --env-file)
 ENV NODE_ENV=production
 ENV PORT=3000
-ENV MONGO_URI=mongodb://rootuser:rootpassword@localhost:27017/hr_system?authSource=rootuser
+ENV MONGO_URI=MONGO_URI=mongodb://rootuser:rootpassword@host.docker.internal:27017/hr_system?authSource=rootuser
 ENV DB_NAME=hr_system
 ENV MONGO_USERNAME=rootuser
 ENV MONGO_PASSWORD=rootpassword
