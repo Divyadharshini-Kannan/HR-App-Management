@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: hr-mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: rootuser
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    volumes:
+      - mongo-data:/data/db
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: divi-hr1
+    ports:
+      - "4567:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      MONGO_URI: mongodb://rootuser:rootpassword@mongo:27017/hr_system?authSource=admin
+      DB_NAME: hr_system
+      MONGO_USERNAME: rootuser
+      MONGO_PASSWORD: rootpassword
+      DEFAULT_ADMIN_ID: project
+      DEFAULT_ADMIN_PASSWORD: project123
+      LOG_LEVEL: info
+    depends_on:
+      - mongo
+
+volumes:
+  mongo-data:
