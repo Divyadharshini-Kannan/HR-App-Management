@@ -21,7 +21,7 @@ spec:
         - name: NODE_ENV
           value: production
         - name: PORT
-          value: "3000"
+          value: 3000
         - name: MONGO_URI
           value: mongodb://rootuser:rootpassword@hr-mongo-service:27017/hr_system?authSource=admin
         - name: DB_NAME
