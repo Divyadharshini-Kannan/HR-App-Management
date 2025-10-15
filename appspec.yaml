@@ -1,0 +1,26 @@
+version: 0.0
+os: Linux
+files:
+  - source: /
+    destination: /home/ec2-user/hr-system
+
+hooks:
+  BeforeInstall:
+    - location: scripts/cleanup.sh
+      timeout: 300
+      runas: ec2-user
+
+  AfterInstall:
+    - location: scripts/pull_image.sh
+      timeout: 300
+      runas: ec2-user
+
+  ApplicationStart:
+    - location: scripts/start_container.sh
+      timeout: 300
+      runas: ec2-user
+
+  ValidateService:
+    - location: scripts/deploy.sh
+      timeout: 300
+      runas: ec2-user
